@@ -38,8 +38,12 @@ parser.add_argument('--bots', nargs="+", type=bot_regex,
                          '  --bots Tyr:P PurpleWave:P\n'
                          '  --bots Tyr PurpleWave '
                     )
-parser.add_argument('--human', action='store_true',
-                    help="Allow play as human against bot.\n")
+# LEPE:
+parser.add_argument('--human', type=int, default=0, 
+                    help="Allow play as human against bot. (Optional) Number of human players. \n")
+# LEPE
+#parser.add_argument('--human', action='store_true',
+#                    help="Allow play as human against bot.\n")
 
 # todo: support builtin AI
 # parser.add_argument('--builtin_ai', type=int, default=0,

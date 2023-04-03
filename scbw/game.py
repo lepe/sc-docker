@@ -23,10 +23,10 @@ from scbw.vnc import check_vnc_exists
 
 logger = logging.getLogger(__name__)
 
-
+#LEPE: human is now int
 class GameArgs(Namespace):
     bots: List[str]
-    human: bool
+    human: int
     map: str
     headless: bool
     game_name: str
@@ -73,8 +73,10 @@ def run_game(
 
     # Prepare players
     players = []
+	#LEPE: allow more than one human:
     if args.human:
-        players.append(HumanPlayer())
+        for i in range(args.human):
+            players.append(HumanPlayer())
     if args.bots is None:
         args.bots = []
 

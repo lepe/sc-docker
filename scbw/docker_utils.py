@@ -207,6 +207,7 @@ def launch_image(
     }
 
     ports = {}
+
     if not headless:
         ports.update({"5900/tcp": vnc_base_port + nth_player})
 

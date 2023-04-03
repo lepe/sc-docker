@@ -7,6 +7,9 @@ import json
 import logging
 import os.path
 import re
+#LEPE:
+import random
+import time
 
 from dateutil.parser import parse as parse_iso_date
 
@@ -39,9 +42,12 @@ class Player:
         return f"{self.__class__.__name__}:{self.name}:{self.race.value}"
 
 
-
+# LEPE: added random number
 class HumanPlayer(Player):
-    name = "human"
+    def __init__(self) -> None:
+        random.seed(time.process_time())
+        num = str(random.randint(100,999))
+        self.name = "human" + num
 
 
 
