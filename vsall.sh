@@ -9,6 +9,12 @@ YELLOW='\033[1;33m'
 CYAN='\033[1;36m'
 RESET='\033[1;37m'
 
+autoclean=0
+if [[ $1 == "clean" ]]; then
+	autoclean=1
+	rm -rf "$games_dir"*
+fi
+
 while read -r bot; do
 	while read -r did; do
 		docker stop $did
@@ -31,4 +37,6 @@ while read -r bot; do
 		fi
 	fi
 done < <(cat bots.lst | shuf)
-docker container prune -f > /dev/null
+if [[ $autoclean == 1 ]]; then
+	docker container prune -f > /dev/null
+fi
