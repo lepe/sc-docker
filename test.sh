@@ -26,7 +26,7 @@ else
 	if [[ $2 != "" ]]; then
 		vs="$2"
 	elif [[ $1 != "" ]]; then
-		if grep "$1" bots.lst; then
+		if grep "$1" bots.lst > /dev/null; then
 			vs="$1"
 		fi
 	fi
@@ -50,4 +50,4 @@ else
 fi
 echo "Playing against: $vs"
 scbw.play --bots "Zorg" "$vs" $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
-killall log.sh
+killall log.sh 2> /dev/null
