@@ -345,7 +345,7 @@ def container_exit_code(container_id: str) -> Optional[int]:
     :raises docker.errors.APIError
     """
     container = docker_client.containers.get(container_id)
-    return container.wait()["StatusCode"]
+    return container.wait()	#LEPE: Fix: it was not needed: ["StatusCode"]
 
 
 def launch_game(

@@ -4,7 +4,7 @@ function show_log {
 	sleep 10
 	./log.sh
 }
-show_log &
+#show_log &
 arg=""
 map=""
 speed=0
@@ -50,4 +50,4 @@ else
 fi
 echo "Playing against: $vs"
 scbw.play --bots "Zorg" "$vs" $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
-pkill log.sh
+#pkill log.sh
