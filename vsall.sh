@@ -15,6 +15,8 @@ if [[ $1 == "clean" ]]; then
 	rm -rf "$games_dir"*
 fi
 
+rm vsall.res
+
 while read -r bot; do
 	while read -r did; do
 		docker stop $did
@@ -28,15 +30,20 @@ while read -r bot; do
 	log="$games_dir/$game/logs_0/scores.json"
 	if [[ ! -f $log ]]; then
 		echo -e "${RED}FAIL${RESET}"
+		echo "FAIL ${bot}" >> vsall.res
 	else
 		winner=$(jq '.is_winner' "$log")
 		if [[ $winner == "true" ]]; then
 			echo -e "${GREEN}WIN${RESET}"
+			echo "WIN ${bot}" >> vsall.res
 		else
 			echo -e "${RED}LOST${RESET}"
+			echo "LOST ${bot}" >> vsall.res
 		fi
 	fi
 done < <(cat bots.lst | shuf)
 if [[ $autoclean == 1 ]]; then
 	docker container prune -f > /dev/null
 fi
+
+./res.sh
