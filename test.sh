@@ -50,4 +50,3 @@ else
 fi
 echo "Playing against: $vs"
 scbw.play --bots "Zorg" "$vs" $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
-killall -q log.sh

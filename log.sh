@@ -9,5 +9,5 @@ fi
 if [[ $1 == "view" ]]; then
 	vim games/$game/$log/bot.log
 else
-	tail -n1000 -f games/$game/$log/bot.log
+	tail -n100 -f games/$game/$log/bot.log | sed '/Bot exited/ q'
 fi
