@@ -21,10 +21,17 @@ vs="--human 1"
 speed=25
 showall="--show_all"
 else
-vs="krasi0"	
+speed=10
+#vs="Feint"
+vs="MadMixT"
+#vs="Hao Pan"
 fi
 
-if [[ $DISPLAY == "" ]]; then
+if [[ $1 == "show" ]]; then
+showall="--show_all"
+fi
+
+if [[ $1 == "hidden" || $DISPLAY == "" ]]; then
 arg="--headless"
 #mapdir="/$home_dir/maps/BroodWar"
 #map="(8)Big Game Hunters.scm"
@@ -36,5 +43,5 @@ mapdir="/$home_dir/maps/"
 map="manual-choose"
 speed=${speed:-15}
 fi
-scbw.play --bots "Zorg" $vs $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
+scbw.play --bots "Zorg" "$vs" $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
 pkill log.sh
