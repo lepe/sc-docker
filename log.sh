@@ -1,7 +1,7 @@
 #!/bin/bash
 cd "$HOME/.scbw/"
 game=$(ls -t1 games/ | head -n1)
-echo "$game"
+#echo "$game"
 log="logs_0"
 if [[ ! -f games/$game/$log/bot.log ]]; then
 	log="logs_1"
