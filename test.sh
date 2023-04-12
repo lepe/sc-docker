@@ -9,6 +9,8 @@ arg=""
 map=""
 speed=0
 showall=""
+human=""
+vs=""
 
 if [[ $1 == "debug" ]]; then
 	sed -i 's/javaDebugDisable/javaDebugPort/' ~/.scbw/bots/Zorg/bot.json
@@ -17,11 +19,12 @@ else
 fi
 
 if [[ $1 == "me" ]]; then
-	vs="--human 1"
+	vs="--human"
+	human=1
 	speed=25
 	showall="--show_all"
 else
-	speed=10
+	speed=0
 	vs=$(shuf bots.lst | head -n 1)
 	if [[ $2 != "" ]]; then
 		vs="$2"
@@ -48,5 +51,5 @@ else
 	map="manual-choose"
 	speed=${speed:-15}
 fi
-echo "Playing against: $vs"
-scbw.play --bots "Zorg" "$vs" $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
+echo "Playing against: $vs $human"
+scbw.play --bots "Zorg" "$vs" $human $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall

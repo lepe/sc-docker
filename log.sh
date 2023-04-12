@@ -7,7 +7,9 @@ if [[ ! -f games/$game/$log/bot.log ]]; then
 	log="logs_1"
 fi
 if [[ $1 == "view" ]]; then
-	vim games/$game/$log/bot.log
+	lnav games/$game/$log/bot.log
+elif [[ $1 == "cat" ]]; then
+	cat games/$game/$log/bot.log
 else
 	tail -n100 -f games/$game/$log/bot.log | sed '/Bot exited/ q'
 fi
