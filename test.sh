@@ -18,10 +18,10 @@ else
 	sed -i 's/javaDebugPort/javaDebugDisable/' ~/.scbw/bots/Zorg/bot.json
 fi
 
-if [[ $1 == "me" ]]; then
+if [[ $1 == "me" || $2 == "me" ]]; then
 	vs="--human"
 	human=1
-	speed=25
+	speed=10
 	showall="--show_all"
 else
 	speed=0
@@ -51,5 +51,5 @@ else
 	map="manual-choose"
 	speed=${speed:-15}
 fi
-echo "Playing against: $vs $human"
+echo "Playing against: $vs"
 scbw.play --bots "Zorg" "$vs" $human $arg --game_speed $speed --map_dir "$mapdir" --map "$map" $showall
